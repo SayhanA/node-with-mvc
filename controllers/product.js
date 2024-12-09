@@ -1,6 +1,5 @@
 const path = require("path");
-
-const products = [];
+const Product = require("../models/products");
 
 const getProduct = (req, res, next) => {
   res.render("add-product", {
@@ -10,13 +9,15 @@ const getProduct = (req, res, next) => {
 };
 
 const postProduct = (req, res, next) => {
-  console.log({ ...req.body });
+  const product = new Product(req.body.name, req.body.description);
+  product.save();
 
   res.redirect("/shop");
 };
 
 const getProductList = (req, res, next) => {
-  res.render("shop", { pageTitle: "shop page", props: products });
+  const allProducts = Product.fetchAllProduct();
+  res.render("shop", { pageTitle: "shop page", props: allProducts });
 };
 
 module.exports = { getProduct, postProduct, getProductList };

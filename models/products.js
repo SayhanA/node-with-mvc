@@ -9,7 +9,7 @@ class Product {
     product.push(this);
   }
 
-  fetchAll() {
+  static fetchAllProduct() {
     return product;
   }
 }
