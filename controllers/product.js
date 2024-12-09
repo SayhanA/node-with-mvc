@@ -15,8 +15,9 @@ const postProduct = (req, res, next) => {
 };
 
 const getProductList = (req, res, next) => {
-  const allProducts = Products.fetchAll();
-  res.render("shop", { pageTitle: "shop page", props: allProducts });
+  const allProducts = Products.fetchAll((productData) => {
+    res.render("shop", { pageTitle: "shop page", props: productData });
+  });
 };
 
 module.exports = { getProduct, postProduct, getProductList };
