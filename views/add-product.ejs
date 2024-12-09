@@ -1,0 +1,29 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/styles/add-product.css" />
+<head>
+  <body>
+    <%- include('includes/nav.ejs') %>
+    <main>
+      <section>
+        <h2>Add you product</h2>
+        <form action="/admin/add-product" method="POST">
+          <input
+            type="text"
+            name="title"
+            id="title"
+            autocomplete="title"
+            placeholder="Product Title"
+          />
+          <textarea
+            name="description"
+            id="description"
+            placeholder="Product description"
+          ></textarea>
+          <button type="submit">Add to cart</button>
+        </form>
+      </section>
+
+      <%- include('includes/end.ejs') %>
+    </main>
+  </body>
+</head>

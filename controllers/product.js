@@ -1,13 +1,22 @@
+const path = require("path");
+
+const products = [];
+
 const getProduct = (req, res, next) => {
-  res.send("<h3>Admin page</h3>");
+  res.render("add-product", {
+    pageTitle: "Add Product Form",
+    link: "/admin/add-product",
+  });
 };
 
 const postProduct = (req, res, next) => {
+  console.log({ ...req.body });
+
   res.redirect("/shop");
 };
 
 const getProductList = (req, res, next) => {
-  res.send("<h3>This is shop page</h3>");
+  res.render("shop", { pageTitle: "shop page", props: products });
 };
 
 module.exports = { getProduct, postProduct, getProductList };
