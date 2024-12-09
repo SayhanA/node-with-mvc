@@ -9,7 +9,7 @@ app.set("views", "views");
 
 const adminRoute = require("./router/admin.js");
 const shopRoute = require("./router/shop.js");
-const { get404 } = require("./contorllers/404.js");
+const { get404 } = require("./controllers/404.js");
 
 const app = express();
 
