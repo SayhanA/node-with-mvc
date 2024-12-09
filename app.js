@@ -4,6 +4,9 @@ require("dotenv").config();
 
 const PORT = process.env.PORT || 8000;
 
+app.set("view engine", "ejs");
+app.set("views", "views");
+
 const adminRoute = require("./router/admin.js");
 const shopRoute = require("./router/shop.js");
 const { get404 } = require("./contorllers/404.js");
