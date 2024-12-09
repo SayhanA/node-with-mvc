@@ -1,5 +1,4 @@
-const path = require("path");
-const Product = require("../models/products");
+const Products = require("../models/products");
 
 const getProduct = (req, res, next) => {
   res.render("add-product", {
@@ -9,14 +8,14 @@ const getProduct = (req, res, next) => {
 };
 
 const postProduct = (req, res, next) => {
-  const product = new Product(req.body.name, req.body.description);
+  const product = new Products(req.body.title, req.body.description);
   product.save();
 
   res.redirect("/shop");
 };
 
 const getProductList = (req, res, next) => {
-  const allProducts = Product.fetchAllProduct();
+  const allProducts = Products.fetchAll();
   res.render("shop", { pageTitle: "shop page", props: allProducts });
 };
 
