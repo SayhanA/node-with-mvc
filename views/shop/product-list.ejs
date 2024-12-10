@@ -9,12 +9,13 @@
         <% props.forEach(product => { %>
         <article class="card">
           <img
-            src="/images/book.avif"
+            src="<%= product.imgUrl %>"
             alt="This product is <%= product.name %>"
           />
           <div class="card_content">
             <h3><%= product.name %></h3>
             <p><%= product.description %></p>
+            <strong><%= product.price %></strong>
             <button type="button">Add to cart</button>
           </div>
         </article>
