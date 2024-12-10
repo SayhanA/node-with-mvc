@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParder.urlencoded({ extended: false }));
 
 app.use("/admin", adminRoute);
-app.use("/shop", shopRoute);
+app.use("/", shopRoute);
 
 app.use(get404);
 

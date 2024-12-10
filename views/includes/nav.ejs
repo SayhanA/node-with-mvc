@@ -1,6 +1,11 @@
 <header>
-    <nav>
-        <li><a href="/shop">Home</a></li>
-        <li><a href="/admin/add-product">Add product</a></li>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="/" class="<%= path === '/' ? 'active' : '' %>">Home</a></li>
+      <li><a href="/products" class="<%= path === '/products' ? 'active' : '' %>">Products</a></li>
+      <li><a href="/cart" class="<%= path === '/cart' ? 'active' : '' %>">Cart</a></li>
+      <li><a href="/admin/add-product" class="<%= path === '/admin/add-product' ? 'active' : '' %>">Add Product</a></li>
+      <li><a href="/admin/products" class="<%= path === '/admin/products' ? 'active' : '' %>">Admin Products</a></li>
+    </ul>
+  </nav>
 </header>
