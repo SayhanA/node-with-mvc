@@ -18,9 +18,7 @@
             <strong><%= product.price %></strong>
             <div class="card-actions">
               <a href="/product/<%= product.id %>">Details</a>
-              <form action="/add-to-cart" method="POST" class="card-actions">
-                <button type="submit">Add To Cart</button>
-              </form>
+              <%- include("../includes/add-to-cart.ejs", {props:product}) %>
             </div>
           </div>
         </article>
