@@ -16,7 +16,7 @@
             id="title"
             autocomplete="title"
             placeholder="Product Title"
-            value="<% if(edit){ %> <%= props.name %> <% } %>"
+            value="<% if(edit){ %> <%= props.title %> <% } %>"
           />
           <input
             type="text"
@@ -41,6 +41,11 @@
           >
 <% if(edit){ %> <%= props.description %> <% } %></textarea
           >
+
+          <% if(edit){ %>
+          <input type="hidden" name="id" id="id" value="<%= props.id %>" /> <% }
+          %>
+
           <button type="submit">
             <%if(edit){%>Update Product<%} else{%>Add to produc"<%}%>
           </button>

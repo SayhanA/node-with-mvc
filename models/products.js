@@ -11,21 +11,34 @@ const getProductFromFile = (cb) => {
 };
 
 class Products {
-  constructor(name, description, imgUrl, price) {
-    (this.name = name),
+  constructor(id, title, description, imgUrl, price) {
+    (this.id = id),
+      (this.title = title),
       (this.description = description),
       (this.imgUrl = imgUrl),
       (this.price = price);
   }
 
   save() {
-    this.id = uuid();
     getProductFromFile((product) => {
-      product.push(this);
+      if (this.id) {
+        const existingProductIndex = product.findIndex(
+          (prod) => prod.id === this.id
+        );
+        const updatedProducts = [...product];
+        updatedProducts[existingProductIndex] = this;
 
-      fs.writeFile(filePath, JSON.stringify(product), (error) => {
-        if (error) console.log(error);
-      });
+        fs.writeFile(filePath, JSON.stringify(updatedProducts), (err) => {
+          console.log(err);
+        });
+      } else {
+        this.id = uuid();
+        product.push(this);
+
+        fs.writeFile(filePath, JSON.stringify(product), (error) => {
+          if (error) console.log(error);
+        });
+      }
     });
   }
 

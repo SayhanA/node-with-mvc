@@ -20,6 +20,7 @@ const getProducts = (req, res, next) => {
 
 const postProduct = (req, res, next) => {
   const product = new Products(
+    (id = null),
     req.body.title,
     req.body.description,
     req.body.imgUrl,
@@ -35,7 +36,7 @@ const getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   if (!editMode) return res.redirect("/");
   Products.findById(productId, (product) => {
-    console.log({ product });
+    // console.log({ product });
     res.render("admin/edit-product", {
       pageTitle: "Edit product page | admin",
       path: "admin/edit-product",
@@ -46,7 +47,14 @@ const getEditProduct = (req, res, next) => {
 };
 
 const postEditProduct = (req, res, next) => {
-  
-}
+  const name = req.body.
+  res.redirect("/admin/products");
+};
 
-module.exports = { getProductForm, postProduct, getProducts, getEditProduct, postEditProduct };
+module.exports = {
+  getProductForm,
+  postProduct,
+  getProducts,
+  getEditProduct,
+  postEditProduct,
+};
