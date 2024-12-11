@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { v4: uuid } = require("uuid");
 const rootPath = require("../utils/path");
 const filePath = path.join(rootPath, "data", "products.json");
 
@@ -18,6 +19,7 @@ class Products {
   }
 
   save() {
+    this.id = uuid();
     getProductFromFile((product) => {
       product.push(this);
 
