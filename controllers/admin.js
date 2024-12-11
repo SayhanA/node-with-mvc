@@ -47,7 +47,14 @@ const getEditProduct = (req, res, next) => {
 };
 
 const postEditProduct = (req, res, next) => {
-  const name = req.body.
+  const updatedProduct = new Products(
+    req.body.id,
+    req.body.title,
+    req.body.description,
+    req.body.imgUrl,
+    req.body.price
+  );
+  updatedProduct.save();
   res.redirect("/admin/products");
 };
 

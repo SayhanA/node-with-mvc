@@ -16,7 +16,7 @@
             id="title"
             autocomplete="title"
             placeholder="Product Title"
-            value="<% if(edit){ %> <%= props.title %> <% } %>"
+            value="<%= edit ? props.title : '' %>"
           />
           <input
             type="text"
@@ -24,7 +24,7 @@
             id="imgUrl"
             autocomplete="imgUrl"
             placeholder="Image URL"
-            value="<% if(edit){ %> <%= props.imgUrl %> <% } %>"
+            value="<%= edit ? props.imgUrl : '' %>"
           />
           <input
             type="number"
@@ -39,7 +39,7 @@
             id="description"
             placeholder="Product description"
           >
-<% if(edit){ %> <%= props.description %> <% } %></textarea
+<% if (edit) { %><%= props.description %><% } %></textarea
           >
 
           <% if(edit){ %>
