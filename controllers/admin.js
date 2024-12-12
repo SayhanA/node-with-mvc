@@ -60,7 +60,7 @@ const postEditProduct = (req, res, next) => {
 
 const deleteProduct = (req, res, next) => {
   const { id, price } = req.body;
-  
+  Products.deleteById(id, price);
   res.redirect("/admin/products");
 };
 
