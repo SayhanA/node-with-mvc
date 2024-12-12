@@ -41,7 +41,10 @@ class Cart {
       const deletedProduct = cart.products.find((prod) => prod.id === id);
       const remainingProducts = cart.products.filter((prod) => prod.id != id);
 
+      console.log(cart.totalPrice, deletedProduct.qty, productPrice);
+
       const remainingCost = cart.totalPrice - deletedProduct.qty * productPrice;
+      console.log(remainingCost);
 
       const newCart = {
         products: remainingProducts,

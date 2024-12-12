@@ -18,6 +18,15 @@ li {
   list-style: none;
 }
 
+.btn {
+  padding: 5px 10px;
+}
+
+.btn:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
 header {
   height: 80px;
   width: 100%;
@@ -35,7 +44,7 @@ nav {
   gap: 30px;
 }
 
-nav > ul{
+nav > ul {
   width: 100%;
   max-width: 1800px;
   margin: 0 40px;
@@ -43,8 +52,8 @@ nav > ul{
   gap: 30px;
 }
 
-nav > ul> li > a {
-    font-weight: 700;
+nav > ul > li > a {
+  font-weight: 700;
   color: white;
 }
 
@@ -53,6 +62,6 @@ main {
   min-height: 80vh;
 }
 
-.active{
-    color: var(--active);
+.active {
+  color: var(--active);
 }

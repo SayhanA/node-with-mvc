@@ -38,9 +38,8 @@ const getCart = (req, res, next) => {
     Products.fetchAll((products) => {
       for (product of cartPros.products) {
         const matchProduct = products.find((prod) => prod.id === product.id);
-        productList.push({...matchProduct, qty:product.qty});
+        productList.push({ ...matchProduct, qty: product.qty });
       }
-      console.log(productList);
       res.render("shop/cart", {
         props: { products: productList, totalPrice: cartPros.totalPrice },
         pageTitle: "cart page | shop",
@@ -56,6 +55,14 @@ const postCart = (req, res, next) => {
     Cart.addProduct(prodId, product.price);
   });
   res.redirect("/cart");
+};
+
+const postDeleteCart = (req, res, next) => {
+  const id = req.body.id;
+  Products.findById(id, (pro) => {
+    Cart.deleteProduct(id, pro.price);
+    res.redirect("/cart");
+  });
 };
 
 const getOrder = (req, res, next) => {
@@ -80,4 +87,5 @@ module.exports = {
   getCheckout,
   getProductById,
   postCart,
+  postDeleteCart,
 };
