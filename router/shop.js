@@ -6,6 +6,7 @@ const {
   getOrder,
   getProductById,
   postCart,
+  deleteCart,
 } = require("../controllers/shop");
 
 const route = require("express").Router();

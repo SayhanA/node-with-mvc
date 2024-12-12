@@ -17,7 +17,7 @@ class Cart {
       let updatedProduct;
       if (isExist) {
         updatedProduct = { ...isExist };
-        updatedProduct.qty = updatedProduct.qty+1;
+        updatedProduct.qty = updatedProduct.qty + 1;
         cart.products = [...cart.products];
         cart.products[isExistIndex] = updatedProduct;
       } else {
@@ -30,6 +30,12 @@ class Cart {
         console.log(err);
       });
     });
+  };
+
+  static deleteProduct(id, productPrice){
+    fs.readFile(filePath, (err, fileContent) => {
+      
+    })
   }
 }
 
