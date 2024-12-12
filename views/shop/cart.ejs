@@ -1,9 +1,36 @@
 <%- include('../includes/head.ejs') %>
-<link rel="stylesheet" href="styles/404.css">
+<link rel="stylesheet" href="/styles/cart.css" />
 <head>
-<body>
+  <body>
     <%- include('../includes/nav.ejs') %>
     <main>
-        <h1>Cart Page.</h1>
-        
-    <%- include('../includes/end.ejs') %>
+      <% if(props?.products?.length > 0){ %>
+
+      <ul class="cart_list">
+        <% props.products.forEach(product => { %>
+        <li class="list_item">
+          <h3><%= product.title %></h3>
+          <img
+            src="<%= product.imgUrl %>"
+            alt="This product is <%= product.name %>"
+          />
+          <p><%= product.description %></p>
+          <strong><%= product.price %></strong>
+          <p>*</p>
+          <strong><%= product.qty %></strong>
+          <p>=</p>
+          <strong><%= product.qty*product.price %></strong>
+          <form>
+              <button type="submit">Delete</button>
+          </form>
+        </li>
+        <% }) %> <% } else{ %>
+        <h3>No Product Found</h3>
+        <% } %>
+      </ul>
+      <strong class="total">total Cost: <%= props.totalPrice %></strong>
+
+      <%- include('../includes/end.ejs') %>
+    </main>
+  </body>
+</head>
