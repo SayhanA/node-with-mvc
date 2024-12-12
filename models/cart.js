@@ -39,6 +39,7 @@ class Cart {
       }
       const cart = JSON.parse(fileContent);
       const deletedProduct = cart.products.find((prod) => prod.id === id);
+      if (!deletedProduct) return;
       const remainingProducts = cart.products.filter((prod) => prod.id != id);
 
       console.log(cart.totalPrice, deletedProduct.qty, productPrice);
