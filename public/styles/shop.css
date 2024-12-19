@@ -13,7 +13,8 @@
 }
 
 .card>img{
-    width: 100%;
+    margin: auto;
+    max-height: 300px;
     object-fit: cover;
 }
 

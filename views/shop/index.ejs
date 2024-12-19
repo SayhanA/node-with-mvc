@@ -9,11 +9,11 @@
         <% props.forEach(product => { %>
         <article class="card">
           <img
-            src="<%= product.imgUrl %>"
+            src="<%= product.imageUrl %>"
             alt="This product is <%= product.name %>"
           />
           <div class="card_content">
-            <h3><%= product.name %></h3>
+            <h3><%= product.title %></h3>
             <p><%= product.description %></p>
             <p>Price: <%= product.price %></p>
             <%- include("../includes/add-to-cart.ejs", {props:product}) %>
