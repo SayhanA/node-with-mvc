@@ -1,24 +1,24 @@
-const db = require("../utils/database");
-const { deleteProduct } = require("./cart");
+const getDb = require("../utils/database").getDb;
 
 class Products {
-  constructor(id, title, description, imgUrl, price) {
-    (this.id = id),
+  constructor(id, title, description, imageUrl, price) {
+    // (this.id = id),
       (this.title = title),
-      (this.description = description),
-      (this.imgUrl = imgUrl),
-      (this.price = price);
+      (this.price = price),
+      (this.imageUrl = imageUrl),
+      (this.description = description);
   }
-
-  save() {}
-
-  static fetchAll() {
-    return db.execute("SELECT * FROM products");
+  save() {
+    const db = getDb();
+    return db.collection("products")
+      .insertOne(this)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-
-  static findById(id, cb) {}
-
-  static deleteById(id, productPrice) {}
 }
 
 module.exports = Products;

@@ -4,7 +4,6 @@ const Cart = require("../models/cart");
 const getIndex = (req, res, next) => {
   Products.fetchAll()
     .then(([rows, fieldData]) => {
-      console.log({ rows });
       res.render("shop/index", {
         pageTitle: "Index page | shop",
         props: rows,
@@ -15,10 +14,10 @@ const getIndex = (req, res, next) => {
 };
 
 const getProductList = (req, res, next) => {
-  const allProducts = Products.fetchAll((productData) => {
+  Products.fetchAll(([rows, fieldData]) => {
     res.render("shop/product-list", {
       pageTitle: "products-list page | shop",
-      props: productData,
+      props: rows,
       path: "/products",
     });
   });
@@ -54,18 +53,16 @@ const getCart = (req, res, next) => {
 
 const postCart = (req, res, next) => {
   const prodId = req.body.productId;
-  Products.findById(prodId, (product) => {
-    Cart.addProduct(prodId, product.price);
-  });
-  res.redirect("/cart");
+  Products.findById(prodId)
+    .then(res.redirect("/cart"))
+    .catch((err) => console.log(err));
 };
 
 const postDeleteCart = (req, res, next) => {
   const id = req.body.id;
-  Products.findById(id, (pro) => {
-    Cart.deleteProduct(id, pro.price);
-    res.redirect("/cart");
-  });
+  Products.findById(id)
+    .then(res.redirect("/cart"))
+    .catch((err) => console.log(err));
 };
 
 const getOrder = (req, res, next) => {
