@@ -20,11 +20,11 @@
           />
           <input
             type="text"
-            name="imgUrl"
-            id="imgUrl"
-            autocomplete="imgUrl"
+            name="imageUrl"
+            id="imageUrl"
+            autocomplete="imageUrl"
             placeholder="Image URL"
-            value="<%= edit ? props.imgUrl : '' %>"
+            value="<%= edit ? props.imageUrl : '' %>"
           />
           <input
             type="number"
@@ -43,8 +43,8 @@
           >
 
           <% if(edit){ %>
-          <input type="hidden" name="id" id="id" value="<%= props._id %>" /> <% }
-          %>
+          <input type="hidden" name="id" id="id" value="<%= props._id %>" /> <%
+          } %>
 
           <button type="submit">
             <%if(edit){%>Update Product<%} else{%>Add to produc"<%}%>

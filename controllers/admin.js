@@ -25,7 +25,7 @@ const postProduct = (req, res, next) => {
     // (id = null),
     req.body.title,
     req.body.description,
-    req.body.imgUrl,
+    req.body.imageUrl,
     req.body.price
   );
   product
@@ -57,7 +57,7 @@ const postEditProduct = (req, res, next) => {
     req.body.id,
     req.body.title,
     req.body.description,
-    req.body.imgUrl,
+    req.body.imageUrl,
     req.body.price
   );
   updatedProduct
