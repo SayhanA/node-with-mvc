@@ -7,12 +7,12 @@ let _db;
 
 const mongoConnect = (callback) => {
   MongoClient.connect(
-    "mongodb+srv://node:aVE6U4ZPT4apEuk5@cluster0.u2hpa9s.mongodb.net"
+    `mongodb+srv://${process.env.DATABASE_NAME}:${process.env.DATABASE_PASSWORD}@sayhan.fatp7.mongodb.net/?retryWrites=true&w=majority&appName=Sayhan`
   )
     .then((client) => {
       console.log("Database connected");
       _db = client.db();
-      callback();
+      callback(client);
     })
     .catch((err) => {
       console.log(err);
