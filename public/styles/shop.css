@@ -13,9 +13,13 @@
 }
 
 .card>img{
+    max-width: 350px;
+    width: 300px;
+    height: 250px;
+    object-position: center;
     margin: auto;
     max-height: 300px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .card_content{
