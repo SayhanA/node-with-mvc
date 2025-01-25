@@ -63,9 +63,9 @@ const postEditProduct = (req, res, next) => {
     req.body.description,
     req.body.imageUrl,
     req.body.price,
-    req.body.id,
+    req.body.id
   );
-  
+
   updatedProduct
     .save()
     .then(() => {
@@ -75,8 +75,14 @@ const postEditProduct = (req, res, next) => {
 };
 
 const deleteProduct = (req, res, next) => {
-  const { id, price } = req.body;
-  Products.deleteById(id, price);
+  const { id } = req.body;
+  Products.deleteById(id)
+    .then((product) => {
+      console.log(product);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   res.redirect("/admin/products");
 };
 

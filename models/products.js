@@ -58,6 +58,22 @@ class Products {
         console.log(err);
       });
   }
+
+  static deleteById(productId) {
+    const db = getDb();
+    return db
+      .collection("products")
+      .deleteOne({ _id: new ObjectId(productId) })
+      .then((result) => {
+        if (result.deletedCount === 1) {
+          console.log("Product successfully deleted");
+        } else {
+          console.log("No product found with the given ID");
+        }
+        return result;
+      })
+      .catch((err) => console.log("Error deleting product:", err));
+  }
 }
 
 module.exports = Products;

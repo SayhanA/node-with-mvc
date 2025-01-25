@@ -20,6 +20,6 @@ route.get("/edit-product/:productId", getEditProduct);
 
 route.post("/edit-product", postEditProduct);
 
-// route.post("/delete-product", deleteProduct);
+route.post("/delete-product", deleteProduct);
 
 module.exports = route;
