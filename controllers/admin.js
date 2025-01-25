@@ -30,7 +30,7 @@ const postProduct = (req, res, next) => {
   );
   product
     .save()
-    .then((res) => console.log(res))
+    // .then((res) => console.log(res))
     .catch((err) => {
       console.log(err);
     });
@@ -44,7 +44,7 @@ const getEditProduct = (req, res, next) => {
   if (!editMode) return res.redirect("/");
   Products.findById(productId)
     .then((product) => {
-      console.log(product);
+      // console.log(product);
       res.render("admin/edit-product", {
         pageTitle: "Edit product page | admin",
         path: "admin/edit-product",
@@ -59,12 +59,13 @@ const getEditProduct = (req, res, next) => {
 
 const postEditProduct = (req, res, next) => {
   const updatedProduct = new Products(
-    req.body.id,
     req.body.title,
     req.body.description,
     req.body.imageUrl,
-    req.body.price
+    req.body.price,
+    req.body.id,
   );
+  
   updatedProduct
     .save()
     .then(() => {
