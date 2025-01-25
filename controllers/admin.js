@@ -10,10 +10,10 @@ const getProductForm = (req, res, next) => {
 
 const getProducts = (req, res, next) => {
   Products.fetchAll()
-    .then(([rows, fieldData]) => {
+    .then((product) => {
       res.render("admin/products", {
         pageTitle: "products page | admin",
-        props: rows,
+        props: product,
         path: "/admin/products",
       });
     })
@@ -42,14 +42,19 @@ const getEditProduct = (req, res, next) => {
   const productId = req.params.productId;
   const editMode = req.query.edit;
   if (!editMode) return res.redirect("/");
-  Products.findById(productId, (product) => {
-    res.render("admin/edit-product", {
-      pageTitle: "Edit product page | admin",
-      path: "admin/edit-product",
-      props: product,
-      edit: editMode,
+  Products.findById(productId)
+    .then((product) => {
+      console.log(product);
+      res.render("admin/edit-product", {
+        pageTitle: "Edit product page | admin",
+        path: "admin/edit-product",
+        props: product,
+        edit: editMode,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };
 
 const postEditProduct = (req, res, next) => {
