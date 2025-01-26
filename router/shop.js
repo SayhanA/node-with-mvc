@@ -22,10 +22,10 @@ route.get("/cart", getCart);
 
 route.post("/cart", postCart);
 
-route.post("/cart-delete-item", postDeleteCart)
+// route.post("/cart-delete-item", postDeleteCart)
 
-route.get("/orders", getOrder);
+// route.get("/orders", getOrder);
 
-route.get("/checkout", getCheckout);
+// route.get("/checkout", getCheckout);
 
 module.exports = route;

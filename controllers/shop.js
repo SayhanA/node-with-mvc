@@ -1,5 +1,4 @@
 const Products = require("../models/products");
-const Cart = require("../models/cart");
 
 const getIndex = (req, res, next) => {
   Products.fetchAll()
@@ -59,38 +58,49 @@ const getCart = (req, res, next) => {
 const postCart = (req, res, next) => {
   const prodId = req.body.productId;
   Products.findById(prodId)
-    .then(res.redirect("/cart"))
-    .catch((err) => console.log(err));
+    .then((product) => {
+      return req.user
+        .addToCart(product)
+        .then((user) => {
+          console.log(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
 };
 
-const postDeleteCart = (req, res, next) => {
-  const id = req.body.id;
-  Products.findById(id)
-    .then(res.redirect("/cart"))
-    .catch((err) => console.log(err));
-};
+// const postDeleteCart = (req, res, next) => {
+//   const id = req.body.id;
+//   Products.findById(id)
+//     .then(res.redirect("/cart"))
+//     .catch((err) => console.log(err));
+// };
 
-const getOrder = (req, res, next) => {
-  res.render("shop/orders", {
-    pageTitle: "Your Orders | shop",
-    path: "/orders",
-  });
-};
+// const getOrder = (req, res, next) => {
+//   res.render("shop/orders", {
+//     pageTitle: "Your Orders | shop",
+//     path: "/orders",
+//   });
+// };
 
-const getCheckout = (req, res, next) => {
-  res.render("shop/checkout", {
-    pageTitle: "shop page | shop",
-    path: "/checkout",
-  });
-};
+// const getCheckout = (req, res, next) => {
+//   res.render("shop/checkout", {
+//     pageTitle: "shop page | shop",
+//     path: "/checkout",
+//   });
+// };
 
 module.exports = {
   getProductList,
   getIndex,
   getCart,
-  getOrder,
-  getCheckout,
+  // getOrder,
+  // getCheckout,
   getProductById,
   postCart,
-  postDeleteCart,
+  // postDeleteCart,
 };
