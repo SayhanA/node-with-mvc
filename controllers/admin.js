@@ -22,17 +22,18 @@ const getProducts = (req, res, next) => {
 
 const postProduct = (req, res, next) => {
   const product = new Products(
-    // (id = null),
     req.body.title,
     req.body.description,
     req.body.imageUrl,
-    req.body.price
+    req.body.price,
+    null,
+    req.user._id
   );
   product
     .save()
-    // .then((res) => console.log(res))
+    .then((res) => console.log(res))
     .catch((err) => {
-      console.log(err);
+      console.error(err);
     });
 
   res.redirect("/");
