@@ -63,6 +63,20 @@ class User {
       });
   }
 
+  deleteCartItem(itemId) {
+    const remainingItems = this.cart.items.filter(
+      (item) => item.productId.toString() !== itemId
+    );
+
+    const db = getDb();
+    return db
+      .collection("users")
+      .updateOne(
+        { _id: this._id },
+        { $set: { cart: { items: remainingItems } } }
+      );
+  }
+
   static findById(userId) {
     const db = getDb();
     return db
