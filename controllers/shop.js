@@ -39,20 +39,18 @@ const getProductById = (req, res, next) => {
 };
 
 const getCart = (req, res, next) => {
-  Cart.getProductsFromCart((cartPros) => {
-    const productList = [];
-    Products.fetchAll((products) => {
-      for (product of cartPros.products) {
-        const matchProduct = products.find((prod) => prod.id === product.id);
-        productList.push({ ...matchProduct, qty: product.qty });
-      }
+  req.user
+    .getCart()
+    .then((products) => {
       res.render("shop/cart", {
-        props: { products: productList, totalPrice: cartPros.totalPrice },
+        props: products,
         pageTitle: "cart page | shop",
         path: "/cart",
       });
+    })
+    .catch((err) => {
+      throw new Error(err);
     });
-  });
 };
 
 const postCart = (req, res, next) => {
@@ -62,7 +60,8 @@ const postCart = (req, res, next) => {
       return req.user
         .addToCart(product)
         .then((user) => {
-          console.log(user);
+          // console.log(user);
+          res.redirect("/cart");
         })
         .catch((err) => {
           console.log(err);

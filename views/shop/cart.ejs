@@ -4,10 +4,10 @@
   <body>
     <%- include('../includes/nav.ejs') %>
     <main>
-      <% if(props?.products?.length > 0){ %>
+      <% if(props?.length > 0){ %>
 
       <ul class="cart_list">
-        <% props.products.forEach(product => { %>
+        <% props.forEach(product => { %>
         <li class="list_item">
           <h3><%= product.title %></h3>
           <img
@@ -17,9 +17,9 @@
           <p><%= product.description %></p>
           <strong><%= product.price %></strong>
           <p>*</p>
-          <strong><%= product.qty %></strong>
+          <strong><%= product.quantity %></strong>
           <p>=</p>
-          <strong><%= product.qty*product.price %></strong>
+          <strong><%= product.quantity*product.price %></strong>
           <form action="/cart-delete-item" method="POST">
             <input type="hidden" name="id" value="<%= product.id %>" />
             <button type="submit" class="btn">Delete</button>
@@ -29,7 +29,6 @@
         <h3>No Product Found</h3>
         <% } %>
       </ul>
-      <strong class="total">total Cost: <%= props.totalPrice %></strong>
 
       <%- include('../includes/end.ejs') %>
     </main>
