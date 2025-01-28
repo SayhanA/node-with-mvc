@@ -77,6 +77,58 @@ class User {
       );
   }
 
+  // addOrder() {
+  //   const db = getDb();
+  //   return db
+  //     .collection("orders")
+  //     .insertOne(this.cart)
+  //     .then((order) => {
+  //       this.cart = { items: [] };
+  //       return db
+  //         .collection("users")
+  //         .updateOne({ _id: this._id }, { $set: { cart: { items: [] } } });
+  //     })
+  //     .catch((err) => {
+  //       throw new Error(err);
+  //     });
+  // }
+  addOrder() {
+    const db = getDb();
+
+    // Step 1: Fetch product details for each item in the cart
+    const productIds = this.cart.items.map((item) => item.productId);
+
+    return db
+      .collection("products")
+      .find({ _id: { $in: productIds } })
+      .toArray()
+      .then((products) => {
+        const enrichedItems = this.cart.items.map((cartItem) => {
+          const product = products.find(
+            (prod) => prod._id.toString() === cartItem.productId.toString()
+          );
+          product.quantity = cartItem.quantity;
+          delete product["userId"];
+          return product;
+        });
+
+        return db.collection("orders").insertOne({
+          userId: this._id,
+          items: enrichedItems,
+          createdAt: new Date(),
+        });
+      })
+      .then(() => {
+        this.cart = { items: [] };
+        return db
+          .collection("users")
+          .updateOne({ _id: this._id }, { $set: { cart: { items: [] } } });
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  }
+
   static findById(userId) {
     const db = getDb();
     return db

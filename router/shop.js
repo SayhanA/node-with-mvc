@@ -3,11 +3,12 @@ const {
   getProductList,
   getCart,
   getCheckout,
-  getOrder,
   getProductById,
   postCart,
   deleteCart,
   postDeleteCart,
+  postOrder,
+  getOrder,
 } = require("../controllers/shop");
 
 const route = require("express").Router();
@@ -22,9 +23,11 @@ route.get("/cart", getCart);
 
 route.post("/cart", postCart);
 
-route.post("/cart-delete-item", postDeleteCart)
+route.post("/cart-delete-item", postDeleteCart);
 
-// route.get("/orders", getOrder);
+route.post("/orders", postOrder);
+
+route.get("/orders", getOrder);
 
 // route.get("/checkout", getCheckout);
 

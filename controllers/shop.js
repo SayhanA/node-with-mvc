@@ -80,12 +80,24 @@ const postDeleteCart = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-// const getOrder = (req, res, next) => {
-//   res.render("shop/orders", {
-//     pageTitle: "Your Orders | shop",
-//     path: "/orders",
-//   });
-// };
+const postOrder = (req, res, next) => {
+  req.user
+    .addOrder()
+    .then((order) => {
+      console.log({ "Orders list": order });
+      res.redirect('/orders')
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const getOrder = (req, res, next) => {
+  res.render("shop/orders", {
+    pageTitle: "Your Orders | shop",
+    path: "/orders",
+  });
+};
 
 // const getCheckout = (req, res, next) => {
 //   res.render("shop/checkout", {
@@ -98,7 +110,8 @@ module.exports = {
   getProductList,
   getIndex,
   getCart,
-  // getOrder,
+  getOrder,
+  postOrder,
   // getCheckout,
   getProductById,
   postCart,
