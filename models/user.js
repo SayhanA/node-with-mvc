@@ -77,21 +77,6 @@ class User {
       );
   }
 
-  // addOrder() {
-  //   const db = getDb();
-  //   return db
-  //     .collection("orders")
-  //     .insertOne(this.cart)
-  //     .then((order) => {
-  //       this.cart = { items: [] };
-  //       return db
-  //         .collection("users")
-  //         .updateOne({ _id: this._id }, { $set: { cart: { items: [] } } });
-  //     })
-  //     .catch((err) => {
-  //       throw new Error(err);
-  //     });
-  // }
   addOrder() {
     const db = getDb();
 
@@ -123,6 +108,21 @@ class User {
         return db
           .collection("users")
           .updateOne({ _id: this._id }, { $set: { cart: { items: [] } } });
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  }
+
+  getOrder() {
+    const db = getDb();
+    return db
+      .collection("orders")
+      .find()
+      .toArray()
+      .then((order) => {
+        console.log(order);
+        return order;
       })
       .catch((err) => {
         throw new Error(err);

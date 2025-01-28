@@ -85,7 +85,7 @@ const postOrder = (req, res, next) => {
     .addOrder()
     .then((order) => {
       console.log({ "Orders list": order });
-      res.redirect('/orders')
+      res.redirect("/orders");
     })
     .catch((err) => {
       console.log(err);
@@ -93,10 +93,18 @@ const postOrder = (req, res, next) => {
 };
 
 const getOrder = (req, res, next) => {
-  res.render("shop/orders", {
-    pageTitle: "Your Orders | shop",
-    path: "/orders",
-  });
+  req.user
+    .getOrder()
+    .then((order) => {
+      res.render("shop/orders", {
+        props: order,
+        pageTitle: "Your Orders | shop",
+        path: "/orders",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 // const getCheckout = (req, res, next) => {
